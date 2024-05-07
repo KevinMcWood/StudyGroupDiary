@@ -1,0 +1,21 @@
+﻿<Window x:Class="StudyGroupDiary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudyGroupDiary"
+        mc:Ignorable="d"
+        Title="Куратор КМПК" Height="600" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FFA07A" Panel.ZIndex="-2"></Grid>
+        <Grid Grid.Row="2" Background="#FFA07A"/>
+        <Button Content="Назад"  Name="BtnBack" Click="BtnBack_Click" Grid.Row="2" Margin="20" HorizontalAlignment="Right"/>
+        <Frame NavigationUIVisibility='Hidden' ContentRendered="MainFrame_ContentRenderend" Grid.Row="1" Name="MainFrame"/>
+    </Grid>
+</Window>
