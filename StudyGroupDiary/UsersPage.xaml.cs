@@ -30,7 +30,9 @@ namespace StudyGroupDiary
 
         private void BtnOpenPB_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new PersonalBusinessPage((sender as Button).DataContext as Users));
+            Button button = sender as Button;
+            var parameter = button.Tag as Users;
+            Manager.MainFrame.Navigate(new PersonalBusinessPage(parameter));
 
         }
 
@@ -42,7 +44,7 @@ namespace StudyGroupDiary
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new PersonalBusinessPage());
+            Manager.MainFrame.Navigate(new PersonalBusinessPage(new Users()));
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

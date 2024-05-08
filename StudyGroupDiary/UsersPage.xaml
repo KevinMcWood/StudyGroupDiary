@@ -19,7 +19,7 @@
 
         <DataGrid x:Name="DGridUsers" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" Binding="{Binding ID}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Имя студента" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия студента" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Отчество студента" Binding="{Binding MiddleName}" Width="*"></DataGridTextColumn>
@@ -28,7 +28,7 @@
                 <DataGridTemplateColumn Header="Личное дело" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Открыть" Name="BtnOpenPB" Click="BtnOpenPB_Click"></Button>
+                            <Button Content="Открыть" Name="BtnOpenPB" Tag="{Binding}" Click="BtnOpenPB_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

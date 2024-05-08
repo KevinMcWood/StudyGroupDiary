@@ -25,21 +25,22 @@ namespace StudyGroupDiary
         private Users _currentUsers = new Users();
         private Passports _currentPassports = new Passports();
 
-        public PersonalBusinessPage(Users selectedUsers, Passports selectedPassports)
+        public PersonalBusinessPage(Users selectedUsers)
         {
             InitializeComponent();
 
+            selectedUsers.Passport = StudyGroupDiaryBDEntities.GetContext().Passports.ToList().FirstOrDefault(x=>x.UIDP==selectedUsers.ID);
             if (selectedUsers != null) //Таблицы users
             {
                 _currentUsers = selectedUsers;
             }
             DataContext = _currentUsers;
 
-            if (selectedPassports != null) //таблица passports
+            /*if (selectedPassports != null) //таблица passports
             {
                 _currentPassports = selectedPassports;
             }
-            DataContext = _currentPassports;
+            DataContext = _currentPassports;*/
 
         }
 
