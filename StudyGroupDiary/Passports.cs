@@ -14,6 +14,7 @@ namespace StudyGroupDiary
     
     public partial class Passports
     {
+        public int PID { get; set; }
         public int UIDP { get; set; }
         public int Number { get; set; }
         public string TypeOfDocument { get; set; }

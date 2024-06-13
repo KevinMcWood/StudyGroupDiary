@@ -5,71 +5,72 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище StudyGroupDiaryBDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "StudyGroupDiaryBD.dbo.Enrollment" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Dostigenia">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DUID" Type="int" Nullable="false" />
+          <Property Name="NameDosti" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mesto" Type="int" />
+          <Property Name="TypeDosti" Type="int" />
+          <Property Name="ImageDosti" Type="image" />
+        </EntityType>
         <EntityType Name="Enrollment">
           <Key>
-            <PropertyRef Name="UIDE" />
-            <PropertyRef Name="YearOfEnrollment" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="OrderNumber" />
-            <PropertyRef Name="SessionExtension" />
-            <PropertyRef Name="ContractNumber" />
+            <PropertyRef Name="EID" />
           </Key>
+          <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UIDE" Type="int" Nullable="false" />
           <Property Name="YearOfEnrollment" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
-          <Property Name="OrderNumber" Type="int" Nullable="false" />
+          <Property Name="OrderNumber" Type="int" />
           <Property Name="SessionExtension" Type="bit" Nullable="false" />
-          <Property Name="ContractNumber" Type="int" Nullable="false" />
+          <Property Name="ContractNumber" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "StudyGroupDiaryBD.dbo.Passports" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IDGender" />
+          </Key>
+          <Property Name="IDGender" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Passports">
           <Key>
-            <PropertyRef Name="UIDP" />
-            <PropertyRef Name="Number" />
-            <PropertyRef Name="TypeOfDocument" />
-            <PropertyRef Name="Series" />
-            <PropertyRef Name="IssuedByWhom" />
-            <PropertyRef Name="Citizenship" />
-            <PropertyRef Name="DateOfIssue" />
-            <PropertyRef Name="Nationality" />
+            <PropertyRef Name="PID" />
           </Key>
+          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UIDP" Type="int" Nullable="false" />
           <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="TypeOfDocument" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Series" Type="int" Nullable="false" />
           <Property Name="IssuedByWhom" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Citizenship" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Citizenship" Type="varchar" MaxLength="100" />
           <Property Name="DateOfIssue" Type="date" Nullable="false" />
-          <Property Name="Nationality" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nationality" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "StudyGroupDiaryBD.dbo.PersonalBusiness" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="PersonalBusiness">
           <Key>
-            <PropertyRef Name="UIDPB" />
-            <PropertyRef Name="SNILS" />
-            <PropertyRef Name="INN" />
-            <PropertyRef Name="Specialization" />
-            <PropertyRef Name="APass" />
-            <PropertyRef Name="CreditCardNumber" />
-            <PropertyRef Name="YearOfRecruitment" />
-            <PropertyRef Name="Benefits" />
-            <PropertyRef Name="BlockInTheStatement" />
-            <PropertyRef Name="Arrears" />
+            <PropertyRef Name="PBID" />
           </Key>
+          <Property Name="PBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UIDPB" Type="int" Nullable="false" />
-          <Property Name="SNILS" Type="int" Nullable="false" />
-          <Property Name="INN" Type="int" Nullable="false" />
-          <Property Name="Specialization" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="APass" Type="bit" Nullable="false" />
-          <Property Name="CreditCardNumber" Type="int" Nullable="false" />
+          <Property Name="SNILS" Type="int" />
+          <Property Name="INN" Type="int" />
+          <Property Name="Specialization" Type="varchar" MaxLength="100" />
+          <Property Name="APass" Type="bit" />
+          <Property Name="CreditCardNumber" Type="int" />
           <Property Name="YearOfRecruitment" Type="date" Nullable="false" />
           <Property Name="Benefits" Type="bit" Nullable="false" />
           <Property Name="BlockInTheStatement" Type="bit" Nullable="false" />
           <Property Name="Arrears" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spevialisition">
+          <Key>
+            <PropertyRef Name="IDS" />
+          </Key>
+          <Property Name="IDS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameSpecialisation" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -81,6 +82,30 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfDosti">
+          <Key>
+            <PropertyRef Name="DostiID" />
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="DostiID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGender">
+          <Key>
+            <PropertyRef Name="UIDG" />
+            <PropertyRef Name="IDG" />
+          </Key>
+          <Property Name="UIDG" Type="int" Nullable="false" />
+          <Property Name="IDG" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -90,12 +115,29 @@
           <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
           <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Photo" Type="image" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" />
-          <Property Name="Login" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="32" />
           <Property Name="DateOfBirth" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Photo" Type="image" />
         </EntityType>
+        <EntityType Name="UserSpec">
+          <Key>
+            <PropertyRef Name="UIDS" />
+            <PropertyRef Name="IDSpec" />
+          </Key>
+          <Property Name="UIDS" Type="int" Nullable="false" />
+          <Property Name="IDSpec" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dostigenia_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Dostigenia" Type="Self.Dostigenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dostigenia">
+              <PropertyRef Name="DUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Enrollment_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
@@ -132,76 +174,95 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Association Name="FK_TypeOfDosti_Dostigenia">
+          <End Role="Dostigenia" Type="Self.Dostigenia" Multiplicity="1" />
+          <End Role="TypeOfDosti" Type="Self.TypeOfDosti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dostigenia">
+              <PropertyRef Name="DID" />
+            </Principal>
+            <Dependent Role="TypeOfDosti">
+              <PropertyRef Name="DostiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfDosti_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="TypeOfDosti" Type="Self.TypeOfDosti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TypeOfDosti">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGender_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="UserGender" Type="Self.UserGender" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IDGender" />
+            </Principal>
+            <Dependent Role="UserGender">
+              <PropertyRef Name="IDG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGender_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserGender" Type="Self.UserGender" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserGender">
+              <PropertyRef Name="UIDG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpec_Spevialisition">
+          <End Role="Spevialisition" Type="Self.Spevialisition" Multiplicity="1" />
+          <End Role="UserSpec" Type="Self.UserSpec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spevialisition">
+              <PropertyRef Name="IDS" />
+            </Principal>
+            <Dependent Role="UserSpec">
+              <PropertyRef Name="IDSpec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpec_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserSpec" Type="Self.UserSpec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserSpec">
+              <PropertyRef Name="UIDS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище StudyGroupDiaryBDModelContainer">
+          <EntitySet Name="Dostigenia" EntityType="Self.Dostigenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passports" EntityType="Self.Passports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalBusiness" EntityType="Self.PersonalBusiness" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spevialisition" EntityType="Self.Spevialisition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDosti" EntityType="Self.TypeOfDosti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGender" EntityType="Self.UserGender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Enrollment" EntityType="Self.Enrollment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Enrollment].[UIDE] AS [UIDE], 
-    [Enrollment].[YearOfEnrollment] AS [YearOfEnrollment], 
-    [Enrollment].[EndDate] AS [EndDate], 
-    [Enrollment].[OrderNumber] AS [OrderNumber], 
-    [Enrollment].[SessionExtension] AS [SessionExtension], 
-    [Enrollment].[ContractNumber] AS [ContractNumber]
-    FROM [dbo].[Enrollment] AS [Enrollment]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Passports" EntityType="Self.Passports" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Passports].[UIDP] AS [UIDP], 
-    [Passports].[Number] AS [Number], 
-    [Passports].[TypeOfDocument] AS [TypeOfDocument], 
-    [Passports].[Series] AS [Series], 
-    [Passports].[IssuedByWhom] AS [IssuedByWhom], 
-    [Passports].[Citizenship] AS [Citizenship], 
-    [Passports].[DateOfIssue] AS [DateOfIssue], 
-    [Passports].[Nationality] AS [Nationality]
-    FROM [dbo].[Passports] AS [Passports]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PersonalBusiness" EntityType="Self.PersonalBusiness" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PersonalBusiness].[UIDPB] AS [UIDPB], 
-    [PersonalBusiness].[SNILS] AS [SNILS], 
-    [PersonalBusiness].[INN] AS [INN], 
-    [PersonalBusiness].[Specialization] AS [Specialization], 
-    [PersonalBusiness].[APass] AS [APass], 
-    [PersonalBusiness].[CreditCardNumber] AS [CreditCardNumber], 
-    [PersonalBusiness].[YearOfRecruitment] AS [YearOfRecruitment], 
-    [PersonalBusiness].[Benefits] AS [Benefits], 
-    [PersonalBusiness].[BlockInTheStatement] AS [BlockInTheStatement], 
-    [PersonalBusiness].[Arrears] AS [Arrears]
-    FROM [dbo].[PersonalBusiness] AS [PersonalBusiness]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="UserSpec" EntityType="Self.UserSpec" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dostigenia_Users" Association="Self.FK_Dostigenia_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dostigenia" EntitySet="Dostigenia" />
+          </AssociationSet>
           <AssociationSet Name="FK_Enrollment_Users" Association="Self.FK_Enrollment_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Enrollment" EntitySet="Enrollment" />
@@ -214,12 +275,110 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="PersonalBusiness" EntitySet="PersonalBusiness" />
           </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDosti_Dostigenia" Association="Self.FK_TypeOfDosti_Dostigenia">
+            <End Role="Dostigenia" EntitySet="Dostigenia" />
+            <End Role="TypeOfDosti" EntitySet="TypeOfDosti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfDosti_Type" Association="Self.FK_TypeOfDosti_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="TypeOfDosti" EntitySet="TypeOfDosti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGender_Gender" Association="Self.FK_UserGender_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="UserGender" EntitySet="UserGender" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGender_Users" Association="Self.FK_UserGender_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserGender" EntitySet="UserGender" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpec_Spevialisition" Association="Self.FK_UserSpec_Spevialisition">
+            <End Role="Spevialisition" EntitySet="Spevialisition" />
+            <End Role="UserSpec" EntitySet="UserSpec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpec_Users" Association="Self.FK_UserSpec_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserSpec" EntitySet="UserSpec" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudyGroupDiaryBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dostigenia">
+          <Key>
+            <PropertyRef Name="DID" />
+          </Key>
+          <Property Name="DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DUID" Type="Int32" Nullable="false" />
+          <Property Name="NameDosti" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mesto" Type="Int32" />
+          <Property Name="TypeDosti" Type="Int32" />
+          <Property Name="ImageDosti" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Dostigenia_Users" FromRole="Dostigenia" ToRole="Users" />
+          <NavigationProperty Name="Type" Relationship="Self.TypeOfDosti" FromRole="Dostigenia" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="EID" />
+          </Key>
+          <Property Name="EID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UIDE" Type="Int32" Nullable="false" />
+          <Property Name="YearOfEnrollment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderNumber" Type="Int32" />
+          <Property Name="SessionExtension" Type="Boolean" Nullable="false" />
+          <Property Name="ContractNumber" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Enrollment_Users" FromRole="Enrollment" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IDGender" />
+          </Key>
+          <Property Name="IDGender" Type="Int32" Nullable="false" />
+          <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.UserGender" FromRole="Gender" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Passports">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UIDP" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Series" Type="Int32" Nullable="false" />
+          <Property Name="IssuedByWhom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Citizenship" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Passports_Users" FromRole="Passports" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PersonalBusiness">
+          <Key>
+            <PropertyRef Name="PBID" />
+          </Key>
+          <Property Name="PBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UIDPB" Type="Int32" Nullable="false" />
+          <Property Name="SNILS" Type="Int32" />
+          <Property Name="INN" Type="Int32" />
+          <Property Name="Specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APass" Type="Boolean" />
+          <Property Name="CreditCardNumber" Type="Int32" />
+          <Property Name="YearOfRecruitment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Benefits" Type="Boolean" Nullable="false" />
+          <Property Name="BlockInTheStatement" Type="Boolean" Nullable="false" />
+          <Property Name="Arrears" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_PersonalBusiness_Users" FromRole="PersonalBusiness" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Spevialisition">
+          <Key>
+            <PropertyRef Name="IDS" />
+          </Key>
+          <Property Name="IDS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameSpecialisation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.UserSpec" FromRole="Spevialisition" ToRole="Users" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -230,6 +389,15 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dostigenia" Relationship="Self.TypeOfDosti" FromRole="Type" ToRole="Dostigenia" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -239,78 +407,27 @@
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="DateOfBirth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Dostigenia" Relationship="Self.FK_Dostigenia_Users" FromRole="Users" ToRole="Dostigenia" />
           <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollment_Users" FromRole="Users" ToRole="Enrollment" />
           <NavigationProperty Name="Passports" Relationship="Self.FK_Passports_Users" FromRole="Users" ToRole="Passports" />
           <NavigationProperty Name="PersonalBusiness" Relationship="Self.FK_PersonalBusiness_Users" FromRole="Users" ToRole="PersonalBusiness" />
+          <NavigationProperty Name="Gender" Relationship="Self.UserGender" FromRole="Users" ToRole="Gender" />
+          <NavigationProperty Name="Spevialisition" Relationship="Self.UserSpec" FromRole="Users" ToRole="Spevialisition" />
         </EntityType>
-        <EntityType Name="Enrollment">
-          <Key>
-            <PropertyRef Name="UIDE" />
-            <PropertyRef Name="YearOfEnrollment" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="OrderNumber" />
-            <PropertyRef Name="SessionExtension" />
-            <PropertyRef Name="ContractNumber" />
-          </Key>
-          <Property Name="UIDE" Type="Int32" Nullable="false" />
-          <Property Name="YearOfEnrollment" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="OrderNumber" Type="Int32" Nullable="false" />
-          <Property Name="SessionExtension" Type="Boolean" Nullable="false" />
-          <Property Name="ContractNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Enrollment_Users" FromRole="Enrollment" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Passports">
-          <Key>
-            <PropertyRef Name="UIDP" />
-            <PropertyRef Name="Number" />
-            <PropertyRef Name="TypeOfDocument" />
-            <PropertyRef Name="Series" />
-            <PropertyRef Name="IssuedByWhom" />
-            <PropertyRef Name="Citizenship" />
-            <PropertyRef Name="DateOfIssue" />
-            <PropertyRef Name="Nationality" />
-          </Key>
-          <Property Name="UIDP" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="Int32" Nullable="false" />
-          <Property Name="TypeOfDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Series" Type="Int32" Nullable="false" />
-          <Property Name="IssuedByWhom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Citizenship" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Passports_Users" FromRole="Passports" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="PersonalBusiness">
-          <Key>
-            <PropertyRef Name="UIDPB" />
-            <PropertyRef Name="SNILS" />
-            <PropertyRef Name="INN" />
-            <PropertyRef Name="Specialization" />
-            <PropertyRef Name="APass" />
-            <PropertyRef Name="CreditCardNumber" />
-            <PropertyRef Name="YearOfRecruitment" />
-            <PropertyRef Name="Benefits" />
-            <PropertyRef Name="BlockInTheStatement" />
-            <PropertyRef Name="Arrears" />
-          </Key>
-          <Property Name="UIDPB" Type="Int32" Nullable="false" />
-          <Property Name="SNILS" Type="Int32" Nullable="false" />
-          <Property Name="INN" Type="Int32" Nullable="false" />
-          <Property Name="Specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APass" Type="Boolean" Nullable="false" />
-          <Property Name="CreditCardNumber" Type="Int32" Nullable="false" />
-          <Property Name="YearOfRecruitment" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Benefits" Type="Boolean" Nullable="false" />
-          <Property Name="BlockInTheStatement" Type="Boolean" Nullable="false" />
-          <Property Name="Arrears" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_PersonalBusiness_Users" FromRole="PersonalBusiness" ToRole="Users" />
-        </EntityType>
+        <Association Name="FK_Dostigenia_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Dostigenia" Type="Self.Dostigenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dostigenia">
+              <PropertyRef Name="DUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Enrollment_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
@@ -347,12 +464,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TypeOfDosti">
+          <End Role="Dostigenia" Type="Self.Dostigenia" Multiplicity="*" />
+          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+        </Association>
+        <Association Name="UserGender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <Association Name="UserSpec">
+          <End Role="Spevialisition" Type="Self.Spevialisition" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="StudyGroupDiaryBDEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Dostigenia" EntityType="Self.Dostigenia" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="Passports" EntityType="Self.Passports" />
           <EntitySet Name="PersonalBusiness" EntityType="Self.PersonalBusiness" />
+          <EntitySet Name="Spevialisition" EntityType="Self.Spevialisition" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Dostigenia_Users" Association="Self.FK_Dostigenia_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dostigenia" EntitySet="Dostigenia" />
+          </AssociationSet>
           <AssociationSet Name="FK_Enrollment_Users" Association="Self.FK_Enrollment_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Enrollment" EntitySet="Enrollment" />
@@ -365,84 +502,41 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="PersonalBusiness" EntitySet="PersonalBusiness" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StudyGroupDiaryBDModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StudyGroupDiaryBDModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="TypeOfDosti" Association="Self.TypeOfDosti">
+            <End Role="Dostigenia" EntitySet="Dostigenia" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
+          <AssociationSet Name="UserGender" Association="Self.UserGender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserSpec" Association="Self.UserSpec">
+            <End Role="Spevialisition" EntitySet="Spevialisition" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище StudyGroupDiaryBDModelContainer" CdmEntityContainer="StudyGroupDiaryBDEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <EntitySetMapping Name="Dostigenia">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Dostigenia">
+              <MappingFragment StoreEntitySet="Dostigenia">
+                <ScalarProperty Name="DID" ColumnName="DID" />
+                <ScalarProperty Name="DUID" ColumnName="DUID" />
+                <ScalarProperty Name="NameDosti" ColumnName="NameDosti" />
+                <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+                <ScalarProperty Name="TypeDosti" ColumnName="TypeDosti" />
+                <ScalarProperty Name="ImageDosti" ColumnName="ImageDosti" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Enrollment">
             <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Enrollment">
               <MappingFragment StoreEntitySet="Enrollment">
+                <ScalarProperty Name="EID" ColumnName="EID" />
                 <ScalarProperty Name="UIDE" ColumnName="UIDE" />
                 <ScalarProperty Name="YearOfEnrollment" ColumnName="YearOfEnrollment" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -452,9 +546,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IDGender" ColumnName="IDGender" />
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Passports">
             <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Passports">
               <MappingFragment StoreEntitySet="Passports">
+                <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="UIDP" ColumnName="UIDP" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="TypeOfDocument" ColumnName="TypeOfDocument" />
@@ -469,6 +572,7 @@
           <EntitySetMapping Name="PersonalBusiness">
             <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.PersonalBusiness">
               <MappingFragment StoreEntitySet="PersonalBusiness">
+                <ScalarProperty Name="PBID" ColumnName="PBID" />
                 <ScalarProperty Name="UIDPB" ColumnName="UIDPB" />
                 <ScalarProperty Name="SNILS" ColumnName="SNILS" />
                 <ScalarProperty Name="INN" ColumnName="INN" />
@@ -482,30 +586,71 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudyGroupDiaryBDModel.sp_helpdiagramdefinition_Result">
+          <EntitySetMapping Name="Spevialisition">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Spevialisition">
+              <MappingFragment StoreEntitySet="Spevialisition">
+                <ScalarProperty Name="IDS" ColumnName="IDS" />
+                <ScalarProperty Name="NameSpecialisation" ColumnName="NameSpecialisation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="StudyGroupDiaryBDModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Users">
+              <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище StudyGroupDiaryBDModel.sp_upgraddiagrams" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TypeOfDosti" TypeName="StudyGroupDiaryBDModel.TypeOfDosti" StoreEntitySet="TypeOfDosti">
+            <EndProperty Name="Dostigenia">
+              <ScalarProperty Name="DID" ColumnName="DostiID" />
+            </EndProperty>
+            <EndProperty Name="Type">
+              <ScalarProperty Name="id" ColumnName="TypeID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserGender" TypeName="StudyGroupDiaryBDModel.UserGender" StoreEntitySet="UserGender">
+            <EndProperty Name="Gender">
+              <ScalarProperty Name="IDGender" ColumnName="IDG" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="UIDG" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserSpec" TypeName="StudyGroupDiaryBDModel.UserSpec" StoreEntitySet="UserSpec">
+            <EndProperty Name="Spevialisition">
+              <ScalarProperty Name="IDS" ColumnName="IDSpec" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="UIDS" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

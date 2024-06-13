@@ -23,7 +23,7 @@ namespace StudyGroupDiary
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new UsersPage());
             Manager.MainFrame = MainFrame;
         }
 

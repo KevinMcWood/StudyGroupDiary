@@ -11,16 +11,18 @@ namespace StudyGroupDiary
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-
+    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.Dostigenia = new HashSet<Dostigenia>();
             this.Enrollment = new HashSet<Enrollment>();
             this.Passports = new HashSet<Passports>();
             this.PersonalBusiness = new HashSet<PersonalBusiness>();
+            this.Gender = new HashSet<Gender>();
+            this.Spevialisition = new HashSet<Spevialisition>();
         }
     
         public int ID { get; set; }
@@ -28,19 +30,24 @@ namespace StudyGroupDiary
         public string Surname { get; set; }
         public string MiddleName { get; set; }
         public string Role { get; set; }
-        public byte[] Photo { get; set; }
-        public string Gender { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
         public string DateOfBirth { get; set; }
+        public byte[] Photo { get; set; }
+
         public Passports Passport { get; set; }
+        public Enrollment Enrollments { get; set; }
+        public PersonalBusiness PersonalBusines { get; set; }
 
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dostigenia> Dostigenia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passports> Passports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonalBusiness> PersonalBusiness { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Gender> Gender { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Spevialisition> Spevialisition { get; set; }
     }
 }

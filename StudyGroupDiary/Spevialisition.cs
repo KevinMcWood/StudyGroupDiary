@@ -12,20 +12,18 @@ namespace StudyGroupDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class PersonalBusiness
+    public partial class Spevialisition
     {
-        public int PBID { get; set; }
-        public int UIDPB { get; set; }
-        public Nullable<int> SNILS { get; set; }
-        public Nullable<int> INN { get; set; }
-        public string Specialization { get; set; }
-        public Nullable<bool> APass { get; set; }
-        public Nullable<int> CreditCardNumber { get; set; }
-        public System.DateTime YearOfRecruitment { get; set; }
-        public bool Benefits { get; set; }
-        public bool BlockInTheStatement { get; set; }
-        public bool Arrears { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Spevialisition()
+        {
+            this.Users = new HashSet<Users>();
+        }
     
-        public virtual Users Users { get; set; }
+        public int IDS { get; set; }
+        public string NameSpecialisation { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

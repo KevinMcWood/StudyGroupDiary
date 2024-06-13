@@ -20,10 +20,10 @@
         <DataGrid x:Name="DGridUsers" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя студента" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия студента" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество студента" Binding="{Binding MiddleName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Gender1}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth}" Width="*"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Личное дело" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -39,6 +39,20 @@
                     <!-- </DataTemplate> -->
                     <!--</DataGridTemplateColumn.CellTemplate> -->
                     <!-- </DataGridTemplateColumn> -->
+                <DataGridTemplateColumn Header="Сводная ведомость" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Открыть" Name="BtnOpenLD" Tag="{Binding}" Click="BtnOpenLD_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Ведомость пропуски" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Открыть" Name="BtnOpenLD" Tag="{Binding}" Click="BtnOpenVP_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="ButtonAdd" Grid.Row="3" Content="Добавить" Click="ButtonAdd_Click"/>

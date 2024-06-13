@@ -2,6 +2,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion Condition="'$(MSBuildProjectExtension) '==' .csproj'">preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{97FF3D01-0471-4935-8257-438A6CBFC8CA}</ProjectGuid>
@@ -67,11 +70,18 @@
     <Compile Include="AnketsPage.xaml.cs">
       <DependentUpon>AnketsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationData\AppConnect.cs" />
+    <Compile Include="Dostigenia.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DostiPage.xaml.cs">
+      <DependentUpon>DostiPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enrollment.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
+    <Compile Include="Gender.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Passports.cs">
@@ -82,9 +92,6 @@
     </Compile>
     <Compile Include="PersonalBusinessPage.xaml.cs">
       <DependentUpon>PersonalBusinessPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RegistrationPage.xaml.cs">
-      <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SGDBD.Context.cs">
       <AutoGen>True</AutoGen>
@@ -101,13 +108,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SGDBD.edmx</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>SGDBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
+    <Compile Include="Spevialisition.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Type.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
@@ -120,7 +127,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginPage.xaml">
+    <Page Include="DostiPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,10 +144,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PersonalBusinessPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="SGDBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SGDBD.edmx</DependentUpon>

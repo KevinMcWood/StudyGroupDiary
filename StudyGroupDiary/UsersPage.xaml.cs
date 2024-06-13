@@ -35,6 +35,15 @@ namespace StudyGroupDiary
             Manager.MainFrame.Navigate(new PersonalBusinessPage(parameter));
 
         }
+        private void BtnOpenLD_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void BtnOpenVP_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void BtnOpenAnket_Click(object sender, RoutedEventArgs e)
         {
