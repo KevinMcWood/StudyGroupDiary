@@ -111,6 +111,12 @@
     <Compile Include="Spevialisition.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>

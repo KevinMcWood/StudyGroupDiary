@@ -60,7 +60,8 @@ namespace StudyGroupDiary
         {
             if (Visibility == Visibility.Visible)
             {
-                StudyGroupDiaryBDEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(action: p => p.Reload());
+                StudyGroupDiaryBDEntities.GetContext().ChangeTracker.DetectChanges();
+                StudyGroupDiaryBDEntities.GetContext().SaveChanges();
                 DGridUsers.ItemsSource = StudyGroupDiaryBDEntities.GetContext().Users.ToList();
             }
         }

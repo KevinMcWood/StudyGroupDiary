@@ -78,15 +78,17 @@ namespace StudyGroupDiary
                 StudyGroupDiaryBDEntities.GetContext().Users.Add(_currentUsers);
             StudyGroupDiaryBDEntities.GetContext().Passports.Add(_currentPassports);
             StudyGroupDiaryBDEntities.GetContext().Enrollment.Add(_currentEnrollment);
-            try
-            {
+            //try
+            //{
                 StudyGroupDiaryBDEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
-            }
-            catch (Exception ex)
+            //}
+            /*catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
-            }
+                MessageBox.Show(ex.InnerException.ToString());
+                MessageBox.Show(ex.HResult.ToString());
+            }*/
         }
 
         /*private void UpdatePB()
