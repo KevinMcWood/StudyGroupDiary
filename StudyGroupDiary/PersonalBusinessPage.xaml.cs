@@ -28,7 +28,7 @@ namespace StudyGroupDiary
         private Passports _currentPassports = new Passports();
         private Enrollment _currentEnrollment = new Enrollment();
         private PersonalBusiness _currentPersonalBusiness = new PersonalBusiness();
-
+        private BitmapImage photoImage;
 
         public PersonalBusinessPage(Users selectedUsers)
         {
@@ -42,6 +42,12 @@ namespace StudyGroupDiary
                 _currentUsers = selectedUsers;
             }
             DataContext = _currentUsers;
+
+            var allGender = StudyGroupDiaryBDEntities.GetContext().Gender.ToList();
+            ComboGender.ItemsSource = allGender;
+
+            var allSpec = StudyGroupDiaryBDEntities.GetContext().Spevialisition.ToList();
+            ComboSpec.ItemsSource = allSpec;
 
             /*if (selectedPassports != null) //таблица passports
             {
@@ -76,8 +82,8 @@ namespace StudyGroupDiary
 
             if (_currentUsers.ID == 0)
                 StudyGroupDiaryBDEntities.GetContext().Users.Add(_currentUsers);
-            StudyGroupDiaryBDEntities.GetContext().Passports.Add(_currentPassports);
-            StudyGroupDiaryBDEntities.GetContext().Enrollment.Add(_currentEnrollment);
+                StudyGroupDiaryBDEntities.GetContext().Passports.Add(_currentPassports);
+                StudyGroupDiaryBDEntities.GetContext().Enrollment.Add(_currentEnrollment);
             //try
             //{
                 StudyGroupDiaryBDEntities.GetContext().SaveChanges();
@@ -89,8 +95,29 @@ namespace StudyGroupDiary
                 MessageBox.Show(ex.InnerException.ToString());
                 MessageBox.Show(ex.HResult.ToString());
             }*/
+
+            if (photoImage != null)
+            {
+                using (StudyGroupDiaryBDEntities entities = new StudyGroupDiaryBDEntities())
+                {
+                    byte[] photoData;
+
+                    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(photoImage));
+
+                    using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                    {
+                        encoder.Save(stream);
+                        photoData = stream.ToArray();
+                    }
+
+                    SqlParameter param = new SqlParameter("@Photo", photoData);
+                    entities.Database.ExecuteSqlCommand("INSERT INTO Users (Photo) VALUES (@Photo)", param);
+                }
+            }
         }
 
+        
         /*private void UpdatePB()
         {
             var currentPB = StudyGroupDiaryBDEntities.GetContext().Users.ToList();
@@ -116,7 +143,18 @@ namespace StudyGroupDiary
 
         private void SelectImage_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "Image files (*.jpg,*.jpeg,*.png,*.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                photoImage = new BitmapImage(new Uri(filename));
+                imgPhoto.Source = photoImage;
+            }
         }
     }       
 }

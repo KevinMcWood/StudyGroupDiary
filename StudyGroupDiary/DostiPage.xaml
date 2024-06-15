@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -60,5 +61,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+            <Button Content="Добавить достижение" Name="AddDosti" Click="AddDosti_Click"/>
+            <Button Content="Удалить достижение" Name="DelDosti" Click="DelDosti_Click"/>
+        </WrapPanel>
     </Grid>
 </Page>

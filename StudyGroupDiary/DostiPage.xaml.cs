@@ -48,5 +48,15 @@ namespace StudyGroupDiary
         {
             UpdateDosti();
         }
+
+        private void AddDosti_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DelDosti_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
