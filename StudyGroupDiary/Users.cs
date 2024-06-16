@@ -19,6 +19,7 @@ namespace StudyGroupDiary
         {
             this.Dostigenia = new HashSet<Dostigenia>();
             this.Enrollment = new HashSet<Enrollment>();
+            this.Grade = new HashSet<Grade>();
             this.Passports = new HashSet<Passports>();
             this.PersonalBusiness = new HashSet<PersonalBusiness>();
             this.Gender = new HashSet<Gender>();
@@ -41,6 +42,8 @@ namespace StudyGroupDiary
         public virtual ICollection<Dostigenia> Dostigenia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grade> Grade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passports> Passports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

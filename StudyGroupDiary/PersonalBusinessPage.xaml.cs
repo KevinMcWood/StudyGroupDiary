@@ -84,17 +84,17 @@ namespace StudyGroupDiary
                 StudyGroupDiaryBDEntities.GetContext().Users.Add(_currentUsers);
                 StudyGroupDiaryBDEntities.GetContext().Passports.Add(_currentPassports);
                 StudyGroupDiaryBDEntities.GetContext().Enrollment.Add(_currentEnrollment);
-            //try
-            //{
+            try
+            {
                 StudyGroupDiaryBDEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
-            //}
-            /*catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
                 MessageBox.Show(ex.InnerException.ToString());
                 MessageBox.Show(ex.HResult.ToString());
-            }*/
+            }
 
             if (photoImage != null)
             {
@@ -118,13 +118,13 @@ namespace StudyGroupDiary
         }
 
         
-        /*private void UpdatePB()
+        private void UpdateUsers()
         {
-            var currentPB = StudyGroupDiaryBDEntities.GetContext().Users.ToList();
+            var currentUser = StudyGroupDiaryBDEntities.GetContext().Users.ToList();
 
-            if (ComboSpec.SelectedIndex > 0)
-                currentPB = currentPB.Where(p => p.NameSpecialisation.Contains(ComboSpec.SelectedItem as Spevialisition)).ToList();        
-        }*/
+            if (ComboGender.SelectedIndex > 0)
+                currentUser = currentUser.Where(p => p.Gender.Contains(ComboGender.SelectedItem as Gender)).ToList();        
+        }
 
 
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
@@ -155,6 +155,11 @@ namespace StudyGroupDiary
                 photoImage = new BitmapImage(new Uri(filename));
                 imgPhoto.Source = photoImage;
             }
+        }
+
+        private void ComboGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateUsers();
         }
     }       
 }

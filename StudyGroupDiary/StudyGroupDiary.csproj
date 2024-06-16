@@ -83,6 +83,12 @@
     <Compile Include="Gender.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Grade.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GradesPage.xaml.cs">
+      <DependentUpon>GradesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs" />
     <Compile Include="Passports.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
@@ -111,6 +117,9 @@
     <Compile Include="Spevialisition.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Subject.cs">
+      <DependentUpon>SGDBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>SGDBD.tt</DependentUpon>
     </Compile>
@@ -128,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DostiPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GradesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

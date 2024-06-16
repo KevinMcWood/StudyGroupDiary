@@ -36,9 +36,11 @@ namespace StudyGroupDiary
         public virtual DbSet<Dostigenia> Dostigenia { get; set; }
         public virtual DbSet<Enrollment> Enrollment { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Passports> Passports { get; set; }
         public virtual DbSet<PersonalBusiness> PersonalBusiness { get; set; }
         public virtual DbSet<Spevialisition> Spevialisition { get; set; }
+        public virtual DbSet<Subject> Subject { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<Users> Users { get; set; }

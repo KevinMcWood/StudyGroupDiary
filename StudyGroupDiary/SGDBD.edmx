@@ -20,7 +20,7 @@
           <Key>
             <PropertyRef Name="EID" />
           </Key>
-          <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EID" Type="int" Nullable="false" />
           <Property Name="UIDE" Type="int" Nullable="false" />
           <Property Name="YearOfEnrollment" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
@@ -35,11 +35,20 @@
           <Property Name="IDGender" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="GradeID" />
+          </Key>
+          <Property Name="GradeID" Type="int" Nullable="false" />
+          <Property Name="UserIDGrade" Type="int" />
+          <Property Name="SubjectIDGrade" Type="int" />
+          <Property Name="GradeValue" Type="int" />
+        </EntityType>
         <EntityType Name="Passports">
           <Key>
             <PropertyRef Name="PID" />
           </Key>
-          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
           <Property Name="UIDP" Type="int" Nullable="false" />
           <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="TypeOfDocument" Type="varchar" MaxLength="50" />
@@ -53,7 +62,7 @@
           <Key>
             <PropertyRef Name="PBID" />
           </Key>
-          <Property Name="PBID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PBID" Type="int" Nullable="false" />
           <Property Name="UIDPB" Type="int" Nullable="false" />
           <Property Name="SNILS" Type="int" />
           <Property Name="INN" Type="int" />
@@ -71,6 +80,13 @@
           </Key>
           <Property Name="IDS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameSpecialisation" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="int" Nullable="false" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -110,7 +126,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
@@ -147,6 +163,30 @@
             </Principal>
             <Dependent Role="Enrollment">
               <PropertyRef Name="UIDE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="SubjectIDGrade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="UserIDGrade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -250,9 +290,11 @@
           <EntitySet Name="Dostigenia" EntityType="Self.Dostigenia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passports" EntityType="Self.Passports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalBusiness" EntityType="Self.PersonalBusiness" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spevialisition" EntityType="Self.Spevialisition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfDosti" EntityType="Self.TypeOfDosti" Schema="dbo" store:Type="Tables" />
@@ -266,6 +308,14 @@
           <AssociationSet Name="FK_Enrollment_Users" Association="Self.FK_Enrollment_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Subject" Association="Self.FK_Grade_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Users" Association="Self.FK_Grade_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Grade" EntitySet="Grade" />
           </AssociationSet>
           <AssociationSet Name="FK_Passports_Users" Association="Self.FK_Passports_Users">
             <End Role="Users" EntitySet="Users" />
@@ -322,7 +372,7 @@
           <Key>
             <PropertyRef Name="EID" />
           </Key>
-          <Property Name="EID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EID" Type="Int32" Nullable="false" />
           <Property Name="UIDE" Type="Int32" Nullable="false" />
           <Property Name="YearOfEnrollment" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -339,11 +389,22 @@
           <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.UserGender" FromRole="Gender" ToRole="Users" />
         </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="GradeID" />
+          </Key>
+          <Property Name="GradeID" Type="Int32" Nullable="false" />
+          <Property Name="UserIDGrade" Type="Int32" />
+          <Property Name="SubjectIDGrade" Type="Int32" />
+          <Property Name="GradeValue" Type="Int32" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Grade_Subject" FromRole="Grade" ToRole="Subject" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Grade_Users" FromRole="Grade" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Passports">
           <Key>
             <PropertyRef Name="PID" />
           </Key>
-          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
           <Property Name="UIDP" Type="Int32" Nullable="false" />
           <Property Name="Number" Type="Int32" Nullable="false" />
           <Property Name="TypeOfDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -358,7 +419,7 @@
           <Key>
             <PropertyRef Name="PBID" />
           </Key>
-          <Property Name="PBID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PBID" Type="Int32" Nullable="false" />
           <Property Name="UIDPB" Type="Int32" Nullable="false" />
           <Property Name="SNILS" Type="Int32" />
           <Property Name="INN" Type="Int32" />
@@ -378,6 +439,14 @@
           <Property Name="IDS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameSpecialisation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.UserSpec" FromRole="Spevialisition" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_Grade_Subject" FromRole="Subject" ToRole="Grade" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -402,7 +471,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -411,6 +480,7 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Dostigenia" Relationship="Self.FK_Dostigenia_Users" FromRole="Users" ToRole="Dostigenia" />
           <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollment_Users" FromRole="Users" ToRole="Enrollment" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_Grade_Users" FromRole="Users" ToRole="Grade" />
           <NavigationProperty Name="Passports" Relationship="Self.FK_Passports_Users" FromRole="Users" ToRole="Passports" />
           <NavigationProperty Name="PersonalBusiness" Relationship="Self.FK_PersonalBusiness_Users" FromRole="Users" ToRole="PersonalBusiness" />
           <NavigationProperty Name="Gender" Relationship="Self.UserGender" FromRole="Users" ToRole="Gender" />
@@ -437,6 +507,30 @@
             </Principal>
             <Dependent Role="Enrollment">
               <PropertyRef Name="UIDE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="SubjectIDGrade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grade_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grade">
+              <PropertyRef Name="UserIDGrade" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -480,9 +574,11 @@
           <EntitySet Name="Dostigenia" EntityType="Self.Dostigenia" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" />
           <EntitySet Name="Passports" EntityType="Self.Passports" />
           <EntitySet Name="PersonalBusiness" EntityType="Self.PersonalBusiness" />
           <EntitySet Name="Spevialisition" EntityType="Self.Spevialisition" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type" EntityType="Self.Type" />
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -493,6 +589,14 @@
           <AssociationSet Name="FK_Enrollment_Users" Association="Self.FK_Enrollment_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Subject" Association="Self.FK_Grade_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Grade" EntitySet="Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grade_Users" Association="Self.FK_Grade_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Grade" EntitySet="Grade" />
           </AssociationSet>
           <AssociationSet Name="FK_Passports_Users" Association="Self.FK_Passports_Users">
             <End Role="Users" EntitySet="Users" />
@@ -554,6 +658,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Grade">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="UserIDGrade" ColumnName="UserIDGrade" />
+                <ScalarProperty Name="SubjectIDGrade" ColumnName="SubjectIDGrade" />
+                <ScalarProperty Name="GradeValue" ColumnName="GradeValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Passports">
             <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Passports">
               <MappingFragment StoreEntitySet="Passports">
@@ -591,6 +705,14 @@
               <MappingFragment StoreEntitySet="Spevialisition">
                 <ScalarProperty Name="IDS" ColumnName="IDS" />
                 <ScalarProperty Name="NameSpecialisation" ColumnName="NameSpecialisation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

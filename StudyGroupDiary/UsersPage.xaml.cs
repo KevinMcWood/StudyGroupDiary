@@ -35,10 +35,6 @@ namespace StudyGroupDiary
             Manager.MainFrame.Navigate(new PersonalBusinessPage(parameter));
 
         }
-        private void BtnOpenLD_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void BtnOpenVP_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +82,11 @@ namespace StudyGroupDiary
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
+        }
+
+        private void BtnOpenSD_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new GradesPage());
         }
     }
 }

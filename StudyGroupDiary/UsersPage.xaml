@@ -23,7 +23,7 @@
                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Gender1}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth}" Width="*"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Личное дело" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -42,7 +42,7 @@
                 <DataGridTemplateColumn Header="Сводная ведомость" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Открыть" Name="BtnOpenLD" Tag="{Binding}" Click="BtnOpenLD_Click"></Button>
+                            <Button Content="Открыть" Name="BtnOpenLD" Tag="{Binding}" Click="BtnOpenSD_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
