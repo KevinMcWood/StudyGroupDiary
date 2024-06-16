@@ -126,13 +126,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DateOfBirth" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="nchar" MaxLength="10" />
           <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="CaseNumber" Type="int" />
         </EntityType>
         <EntityType Name="UserSpec">
           <Key>
@@ -471,11 +472,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateOfBirth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Dostigenia" Relationship="Self.FK_Dostigenia_Users" FromRole="Users" ToRole="Dostigenia" />
           <NavigationProperty Name="Enrollment" Relationship="Self.FK_Enrollment_Users" FromRole="Users" ToRole="Enrollment" />
@@ -484,6 +485,7 @@
           <NavigationProperty Name="PersonalBusiness" Relationship="Self.FK_PersonalBusiness_Users" FromRole="Users" ToRole="PersonalBusiness" />
           <NavigationProperty Name="Gender" Relationship="Self.UserGender" FromRole="Users" ToRole="Gender" />
           <NavigationProperty Name="Spevialisition" Relationship="Self.UserSpec" FromRole="Users" ToRole="Spevialisition" />
+          <Property Name="CaseNumber" Type="Int32" />
         </EntityType>
         <Association Name="FK_Dostigenia_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -738,6 +740,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="StudyGroupDiaryBDModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />

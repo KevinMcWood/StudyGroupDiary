@@ -33,6 +33,7 @@ namespace StudyGroupDiary
         public string Role { get; set; }
         public string DateOfBirth { get; set; }
         public byte[] Photo { get; set; }
+        public Nullable<int> CaseNumber { get; set; }
 
         public Passports Passport { get; set; }
         public Enrollment Enrollments { get; set; }

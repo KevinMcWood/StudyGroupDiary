@@ -37,7 +37,7 @@
 
         <Image Name="imgPhoto" Grid.RowSpan="6">
             <Image.Source>
-                <Binding Path="ImagePreview">
+                <Binding Path="Photo">
                     <Binding.TargetNullValue>
                         <ImageSource>C:\Users\Danya\source\repos\StudyGroupDiary\StudyGroupDiary\Resource\picture.png</ImageSource>
                     </Binding.TargetNullValue>
@@ -51,7 +51,7 @@
         <Label Content="Отчество" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1"/>
         <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding MiddleName}"/>
         <Label Content="Номер дела*" Grid.Row="3" Grid.Column="1"/>
-        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding ID}"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding CaseNumber}"/>
         <Label Content="СНИЛС*" Grid.Row="4" Grid.Column="1"/>
         <TextBox Grid.Column="2" Grid.Row="4" Text="{Binding PersonalBusines.SNILS}"/>
         <Label Content="ИНН*" Grid.Row="5" Grid.Column="1"/>
