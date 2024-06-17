@@ -21,7 +21,7 @@ namespace StudyGroupDiary
         public int Series { get; set; }
         public string IssuedByWhom { get; set; }
         public string Citizenship { get; set; }
-        public System.DateTime DateOfIssue { get; set; }
+        public string DateOfIssue { get; set; }
         public string Nationality { get; set; }
     
         public virtual Users Users { get; set; }

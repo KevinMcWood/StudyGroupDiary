@@ -15,12 +15,12 @@ namespace StudyGroupDiary
     public partial class Enrollment
     {
         public int EID { get; set; }
-        public int UIDE { get; set; }
-        public System.DateTime YearOfEnrollment { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public string YearOfEnrollment { get; set; }
+        public string EndDate { get; set; }
         public Nullable<int> OrderNumber { get; set; }
         public bool SessionExtension { get; set; }
         public Nullable<int> ContractNumber { get; set; }
+        public int UIDE { get; set; }
     
         public virtual Users Users { get; set; }
     }

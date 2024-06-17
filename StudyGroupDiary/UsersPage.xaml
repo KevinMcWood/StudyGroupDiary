@@ -15,6 +15,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <DataGrid x:Name="DGridUsers" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2">
@@ -57,5 +58,6 @@
         </DataGrid>
         <Button x:Name="ButtonAdd" Grid.Row="3" Content="Добавить" Click="ButtonAdd_Click"/>
         <Button x:Name="ButtonDel" Grid.Row="4" Content="Удалить" Click="ButtonDel_Click"/>
+        <Button x:Name="ButtonExcel" Grid.Row="5" Content="Выгрузить в Excel" Click="ButtonExcel_Click"/>
     </Grid>
 </Page>

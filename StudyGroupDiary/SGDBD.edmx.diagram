@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4c21deac0d4b450b989afdf8763aa3aa" Name="Diagram1">
+      <Diagram DiagramId="24291f48a54f43cebd851a1f5c834653" Name="Diagram1">
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Dostigenia" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Enrollment" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Gender" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Subject" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Type" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Users" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupDiaryBDModel.Users" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <AssociationConnector Association="StudyGroupDiaryBDModel.FK_Dostigenia_Users" ManuallyRouted="false" />
         <AssociationConnector Association="StudyGroupDiaryBDModel.FK_Enrollment_Users" ManuallyRouted="false" />
         <AssociationConnector Association="StudyGroupDiaryBDModel.FK_Grade_Subject" ManuallyRouted="false" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 namespace StudyGroupDiary
 {
@@ -87,6 +91,31 @@ namespace StudyGroupDiary
         private void BtnOpenSD_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new GradesPage());
+        }
+
+        private void ButtonExcel_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Сохранить как Excel файл";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    // Предполагается, что ваш DataGrid называется 'DGridUsers'
+                    DataTable dt = ((DataView)DGridUsers.ItemsSource).ToTable();
+                    using (var workbook = new XLWorkbook())
+                    {
+                        workbook.Worksheets.Add(dt, "Sheet1");
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                    MessageBox.Show("Файл успешно сохранен!", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при сохранении файла: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

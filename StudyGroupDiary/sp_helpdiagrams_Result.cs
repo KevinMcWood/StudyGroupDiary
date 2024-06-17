@@ -10,22 +10,13 @@
 namespace StudyGroupDiary
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PersonalBusiness
+    public partial class sp_helpdiagrams_Result
     {
-        public int PBID { get; set; }
-        public Nullable<int> SNILS { get; set; }
-        public Nullable<int> INN { get; set; }
-        public string Specialization { get; set; }
-        public Nullable<bool> APass { get; set; }
-        public Nullable<int> CreditCardNumber { get; set; }
-        public string YearOfRecruitment { get; set; }
-        public bool Benefits { get; set; }
-        public bool BlockInTheStatement { get; set; }
-        public bool Arrears { get; set; }
-        public int UIDPB { get; set; }
-    
-        public virtual Users Users { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

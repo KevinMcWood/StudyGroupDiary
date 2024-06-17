@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClosedXML.Excel;
 
 namespace StudyGroupDiary
 {
@@ -32,11 +33,12 @@ namespace StudyGroupDiary
 
         public PersonalBusinessPage(Users selectedUsers)
         {
+
             InitializeComponent();
 
             selectedUsers.Passport = StudyGroupDiaryBDEntities.GetContext().Passports.ToList().FirstOrDefault(x => x.UIDP == selectedUsers.ID);
-            selectedUsers.Enrollments = StudyGroupDiaryBDEntities.GetContext().Enrollment.ToList().FirstOrDefault(x => x.UIDE == selectedUsers.ID);
-            selectedUsers.PersonalBusines = StudyGroupDiaryBDEntities.GetContext().PersonalBusiness.ToList().FirstOrDefault(x => x.UIDPB == selectedUsers.ID);
+            selectedUsers.Enrollments = StudyGroupDiaryBDEntities.GetContext().Enrollment.ToList().FirstOrDefault(x => x.EID == selectedUsers.ID);
+            selectedUsers.PersonalBusines = StudyGroupDiaryBDEntities.GetContext().PersonalBusiness.ToList().FirstOrDefault(x => x.PBID == selectedUsers.ID);
             if (selectedUsers != null) //Таблицы users
             {
                 _currentUsers = selectedUsers;
@@ -45,9 +47,13 @@ namespace StudyGroupDiary
 
             var allGender = StudyGroupDiaryBDEntities.GetContext().Gender.ToList();
             ComboGender.ItemsSource = allGender;
+            ComboGender.DisplayMemberPath = "Gender1";
+            ComboGender.SelectedValuePath = "IDGender";
 
             var allSpec = StudyGroupDiaryBDEntities.GetContext().Spevialisition.ToList();
             ComboSpec.ItemsSource = allSpec;
+            ComboSpec.DisplayMemberPath = "NameSpecialisation";
+            ComboSpec.SelectedValuePath = "IDS";
 
             /*if (selectedPassports != null) //таблица passports
             {
@@ -96,7 +102,7 @@ namespace StudyGroupDiary
                 MessageBox.Show(ex.HResult.ToString());
             }
 
-            if (photoImage != null)
+            if (photoImage != null) //СОХРАНЕНИЕ ФОТО ПОКА НЕ ТРОГАТЬ!
             {
                 using (StudyGroupDiaryBDEntities entities = new StudyGroupDiaryBDEntities())
                 {
